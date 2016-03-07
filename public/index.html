@@ -11,103 +11,36 @@
   </head>
 
   <body data-stellar-background-ratio="0.2">
-    <section class ="login">
+    <section class="login">
       <h1>UFOMG</h1>
       <h4>A UFO site for social people</h4>
-      <div class="username">
-        <input type="text" name="name" value="User Name">
-      </div>
-      <div class="password">
-        <input type="text" name="pass" value="Password">
-      </div>
-      <div class="submit">
-        <button type="button" name="button">Submit</button>
-      </div>
-      <div class="add-new">
-        <button type="button" name="button">Add new user</button>
+      <div class='login-form'>
+        <input type="text" name="username" placeholder="User Name">
+        <input type="password" name="password" placeholder="Password">
+        <button type="button" name="submit">Submit</button>
+        <button type="button" name="addNew">New user</button>
       </div>
     </section>
 
-    <section class='mainContent'>
+    <section class='mainContent hidden'>
       <header>
         <h1>UFOMG</h1>
         <h4>A UFO site for social people</h4>
-          <button type="button" name="Add-new-entry">Add new entry</button>
+          <button type="button" name="logout">Logout</button>
+          <button type="button" name="Add-new-entry">Add</button>
       </header>
 
-      <section class='new-entry'>
-
+      <section class='new-entry hidden'>
         <form class="entry-fields">
-          <input type="text" name="name" placeholder="Image URL">
-          <input type="text" name="name" placeholder="Date and time">
-          <input type="text" name="name" placeholder="Location">
-          <textarea name="name" rows="8" cols="40" placeholder="Description"></textarea>
+          <input type="text" name="image" placeholder="Image URL">
+          <input type="text" name="location" placeholder="Location">
+          <textarea name="text" rows="8" cols="40" placeholder="Description"></textarea>
+          <button type="submit" name="submitNewSighting">Submit</button>
         </form>
       </section>
+
       <section class="feed">
-        <div class='feedItem'>
-          <div class='feedInfoContainer'>
-            <span class='feedUser'>Fox Mulder</span>
-            <span class='feedTime'>June 25th, 2015 3:24 PM</span>
-            <span class='feedLocation'>Charleston, SC</span>
-          </div>
-          <span class='feedImg'><img src='css/images/Alien_Spaceship1.jpg'></span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque recusandae, pariatur, accusantium temporibus saepe! Deserunt cumque nobis voluptatem magnam animi vero nam nemo, fugit quam. Mollitia, voluptatibus! Id, aliquid?</p>
-        </div>
-        <div class='feedItem'>
-          <div class='feedInfoContainer'>
-            <span class='feedUser'>Dana Mulder</span>
-            <span class='feedTime'>June 25th, 2015 3:24 PM</span>
-            <span class='feedLocation'>Charleston, SC</span>
-          </div>
-          <span class='feedImg'><img src='css/images/Alien-pic2.jpg'></span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque recusandae, pariatur, accusantium temporibus saepe! Deserunt cumque nobis voluptatem magnam animi vero nam nemo, fugit quam. Mollitia, voluptatibus! Id, aliquid?</p>
-        </div>
-        <div class='feedItem'>
-          <div class='feedInfoContainer'>
-            <span class='feedUser'>Fox Mulder</span>
-            <span class='feedTime'>June 25th, 2015 3:24 PM</span>
-            <span class='feedLocation'>Charleston, SC</span>
-          </div>
-          <span class='feedImg'><img src='css/images/Alien-pic3.jpg'></span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque recusandae, pariatur, accusantium temporibus saepe! Deserunt cumque nobis voluptatem magnam animi vero nam nemo, fugit quam. Mollitia, voluptatibus! Id, aliquid?</p>
-        </div>
-        <div class='feedItem'>
-          <div class='feedInfoContainer'>
-            <span class='feedUser'>Fox Mulder</span>
-            <span class='feedTime'>June 25th, 2015 3:24 PM</span>
-            <span class='feedLocation'>Charleston, SC</span>
-          </div>
-          <span class='feedImg'><img src='http://placehold.it/50x50/'></span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque recusandae, pariatur, accusantium temporibus saepe! Deserunt cumque nobis voluptatem magnam animi vero nam nemo, fugit quam. Mollitia, voluptatibus! Id, aliquid?</p>
-        </div>
-        <div class='feedItem'>
-          <div class='feedInfoContainer'>
-            <span class='feedUser'>Fox Mulder</span>
-            <span class='feedTime'>June 25th, 2015 3:24 PM</span>
-            <span class='feedLocation'>Charleston, SC</span>
-          </div>
-          <span class='feedImg'><img src='http://placehold.it/50x50'></span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque recusandae, pariatur, accusantium temporibus saepe! Deserunt cumque nobis voluptatem magnam animi vero nam nemo, fugit quam. Mollitia, voluptatibus! Id, aliquid?</p>
-        </div>
-        <div class='feedItem'>
-          <div class='feedInfoContainer'>
-            <span class='feedUser'>Fox Mulder</span>
-            <span class='feedTime'>June 25th, 2015 3:24 PM</span>
-            <span class='feedLocation'>Charleston, SC</span>
-          </div>
-          <span class='feedImg'><img src='http://placehold.it/50x50'></span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque recusandae, pariatur, accusantium temporibus saepe! Deserunt cumque nobis voluptatem magnam animi vero nam nemo, fugit quam. Mollitia, voluptatibus! Id, aliquid?</p>
-        </div>
-        <div class='feedItem'>
-          <div class='feedInfoContainer'>
-            <span class='feedUser'>Fox Mulder</span>
-            <span class='feedTime'>June 25th, 2015 3:24 PM</span>
-            <span class='feedLocation'>Charleston, SC</span>
-          </div>
-          <span class='feedImg'><img src='http://placehold.it/50x50'></span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque recusandae, pariatur, accusantium temporibus saepe! Deserunt cumque nobis voluptatem magnam animi vero nam nemo, fugit quam. Mollitia, voluptatibus! Id, aliquid?</p>
-        </div>
+        <h2> Loading Feed...</h2>
       </section>
     </section>
 

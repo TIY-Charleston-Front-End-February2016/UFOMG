@@ -1,32 +1,53 @@
 .new-entry {
   width: 100%;
-  margin-left: 15%;
+}
+
+.entry-fields {
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
 }
 
 
-
 .entry-fields input {
-  width: 20%;
+  width: 49%;
   height: 30px;
-  margin-right: 10px;
-  margin-left: 20px;
   text-align: center;
   color: white;
   box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.6);
   background: rgba(255, 255, 255, 0);
   font-family:monospace;
   font-size: 18px;
-
-
+  &:nth-of-type(2) {
+    margin-left: 1.5%;
+  }
 }
 
 textarea {
-  width: 66.5%;
+  width: 100%;
+  padding: 10px;
   margin-top: 30px;
-  margin-left: 20px;
   color: white;
   font-family:monospace;
   font-size: 18px;
   box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.6);
   background: rgba(255, 255, 255, 0);
+}
+
+button[name='submitNewSighting'] {
+  position: absolute;
+  right: 0px;
+  display: inline-block;
+  width: 148px;
+  margin-top: 20px;
+  border-radius: 20px;
+  border-color: #529EEB;
+  background: rgba(255, 255, 255, 0);
+  color:#C2CAD1;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 15px;
+  &:focus{
+    outline: none;
+  }
 }

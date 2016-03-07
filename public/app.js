@@ -16,14 +16,26 @@ var ufomg =  {
     ufomg.initializeGeocoder();
   },
   events: function(){
-    $('.submit input').on('click', ufomg.login);
-    $('.add-new input').on('click', function(){});
+    $('button[name="submit"]').on('click', ufomg.login);
+    $('button[name="addNew"]').on('click', ufomg.addUser);
+    $('button[name="submitNewSighting"]').on('click', function(event){
+      ufomg.addFeed(ufomg.getFeedData(event));
+    });
+    $('button[name="Add-new-entry"]').on('click', function(event){
+      ufomg.showAddForm(event);
+    });
+    $('button[name="logout"]').on('click', function(event){ufomg.logout(event)});
+    $('.feed').on('click', '.delete', function(event){
+      ufomg.deleteFeed({id:parseInt($(this).closest('.feedItem').data('id'))});
+      ufomg.getFeed();
+    });
+    $('.feed').on('click', '.edit', function(){});
   },
   getTemplate: function(templateName){
     return templates[templateName];
   },
   constructTemplate: function(templateName, str){
-    var tmpl = _.templates(ufomg.getTemplate(templateName));
+    var tmpl = _.template(ufomg.getTemplate(templateName));
     return tmpl(str);
   },
   buildFeedRow: function(templateName, data, target){
@@ -43,7 +55,11 @@ var ufomg =  {
       data: login,
       success: function(result){
         var output = result.split(" ");
-        sessionStorage.setItem("userID", result);
+        sessionStorage.setItem("userID", output[1]);
+        sessionStorage.setItem("userName", output[0]);
+        $('.login').addClass('hidden');
+        $('.mainContent').removeClass('hidden');
+        ufomg.getFeed();
       },
       error: function(error){
         console.log("Login error", error);
@@ -51,24 +67,36 @@ var ufomg =  {
     })
   },
   getLogin: function(){
-    var username = $('.username input').val();
-    var password = $('.password input').val();
-    $('.login input[type="text"]').val('');
+    var username = $('input[name="username"]').val();
+    var password = $('input[name="password"]').val();
+    $('.login-form input').val('');
     return {
       userName: username,
       userPass: password
     };
   },
-  logout: function(){
+  logout: function(event){
     $.ajax({
       url: "/logout",
+      method: "POST",
+      success: function(result) {
+        sessionStorage.setItem("userID", "");
+        sessionStorage.setItem("userName", "");
+        $('.mainContent').addClass('hidden');
+        $('.login').removeClass('hidden');
+        $('.feed').html("<h2> Loading Feed...</h2>");
+      },
+      error: function(error) {
+        console.log("Logout error", error);
+      }
     });
   },
-  addUser: function(data){
+  addUser: function(){
+    var user = ufomg.getLogin();
     $.ajax({
       url: "/create-user",
       method: "POST",
-      data: data,
+      data: user,
       success: function(result){
         console.log(result);
       },
@@ -89,14 +117,23 @@ var ufomg =  {
       }
     });
   },
-  getFeed: function(data) {
+  getFeed: function(flag) {
     $.ajax({
       url: "/allSightings",
       method: "GET",
       success: function(result){
+        var filtered = ufomg.mapIncomingFeedData(JSON.parse(result));
         if(result.length !== ufomg.config.feedData.length) {
-          ufomg.config.feedData = result;
+          $('.feed').html('');
+          ufomg.buildFeed(filtered, '.feed', 'feedItem');
         }
+        if(flag){
+          ufomg.buildFeed(filtered, '.feed', 'feedItem');
+          $('.feed').html('');
+        }
+      },
+      complete: function() {
+
       },
       error: function(error){
         console.log("Get Feed", error);
@@ -107,13 +144,17 @@ var ufomg =  {
     $.ajax({
       url: "/update-sighting",
       method: "PUT",
+      data: data,
       success: function(result){
-
+        ufomg.getFeed(true);
       },
       error: function(error){
         console.log("Edit Feed", error);
       }
     });
+  },
+  displayEditFeed: function() {
+
   },
   addFeed: function(data) {
     $.ajax({
@@ -121,27 +162,51 @@ var ufomg =  {
       method: "POST",
       data: data,
       success: function(result){
-
+        ufomg.getFeed();
       },
       error: function(error){
         console.log("Add Feed", error);
       }
     });
   },
-  getFeedData: function(){
+  mapIncomingFeedData: function(array) {
+    var result = array.map(function(el){
+      return {
+        location: [el.lat,el.lon],
+        timestamp: moment.unix(el.timestamp).format("dddd, MMMM Do YYYY, h:mm:ss a"),
+        userName: el.userName,
+        img: el.url,
+        text: el.text,
+        id: el.id
+      }
+    });
+    return result;
+  },
+  getFeedData: function(event){
+    event.preventDefault();
+    var latlong = $('input[name="location"]').val();
+    var img = $('input[name="image"]').val();
+    var timestamp = moment().unix();
+    var text = $('textarea[name="text"]').val();
+    $('.entry-fields').children().val('');
+    $('.new-entry').addClass('hidden');
     return {
-      lat: lat,
-      lon: lon,
+      lat: latlong,
+      lon: latlong,
       text: text,
-      timestamp: timestamp,
-      url: url,
-      userName: userName
+      timestamp: moment().unix(),
+      url: img,
     };
+  },
+  showAddForm: function(event){
+    event.preventDefault();
+    $('.new-entry').toggleClass('hidden');
   },
   deleteFeed: function(data) {
     $.ajax({
       url: "/delete-sighting",
-      method: "DELETE",
+      method: "POST",
+      data: data,
       success: function(result){
 
       },
@@ -164,26 +229,28 @@ var ufomg =  {
     ufomg.config.geocoder = new google.maps.Geocoder();
   },
   codeAddress: function(address){
-    ufomg.config.geocoder.geocode({ 'address': address }, function(results, status){
+    var results = ufomg.config.geocoder.geocode({ 'address': address }, function(results, status){
       if(status === google.maps.GeocoderStatus.OK) {
-        ufomg.config.geocoderResult = results;
+        return results;
       } else {
         console.log("Geocoder error", status);
       }
     });
+    return results;
   },
   decodeAddress: function(coords){
     var latlong = {
-      lat: coords.latitude,
-      lng: coords.longitude
+      lat: parseFloat(coords[0]),
+      lng: parseFloat(coords[1])
     }
-    ufomg.config.geocoder.geocode({'location': latlong}, function(results, status){
+    var results = ufomg.config.geocoder.geocode({'location': latlong}, function(results, status){
       if(status === google.maps.GeocoderStatus.OK) {
-        ufomg.config.geocoderResult = results;
+        return results;
       } else {
         console.log("Reverse Geocoder error", status)
       }
     });
+    return results;
   }
 }
 
