@@ -17,14 +17,12 @@ h4 {
 
 .login {
   margin: 0 auto;
-  width: 40%;
-  padding: 39px;
+  width: 600px;
+  padding: 40px;
   margin-top: 60px;
-  /*box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.6);*/
 }
 
-
-.username input, .password input {
+input[name='username'], input[name='password'] {
   width: 60%;
   height: 29px;
   margin-left: 18%;
@@ -36,30 +34,13 @@ h4 {
 
 }
 
-.password {
+input[name='password'] {
   margin-bottom: 20px;
 }
 
-  .add-new, .submit  {
-    width: 30%;
-    margin-top: 10px;
-    display: inline-block;
-
-
-  }
-
-  .submit {
-    margin-left: 89px;
-
-  }
-
-  .add-new {
-    margin-left: 15px;
-  }
-
-
- .submit button, .add-new button {
-   width: 93%;
+ button[name='submit'], button[name='addNew'] {
+   display: inline-block;
+   width: 30%;
    border-radius: 20px;
    background: rgba(255, 255, 255, 0);
    border-color: #529EEB;
@@ -70,6 +51,12 @@ h4 {
    &:focus{
      outline: none;
    }
-
-
  }
+
+button[name='submit'] {
+  margin-left: 88px;
+}
+
+button[name='addNew'] {
+  margin-left: 10px;
+}

@@ -1,11 +1,16 @@
 * {
-  margin: 0; }
+  margin: 0;
+  box-sizing: border-box;
+  color: white; }
 
 body {
   width: 100%;
   background-image: url("images/StarryNight2.jpg");
   background-repeat: repeat;
   background-attachment: fixed; }
+
+.hidden {
+  display: none; }
 
 h1 {
   color: white;
@@ -23,12 +28,11 @@ h4 {
 
 .login {
   margin: 0 auto;
-  width: 40%;
-  padding: 39px;
-  margin-top: 60px;
-  /*box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.6);*/ }
+  width: 600px;
+  padding: 40px;
+  margin-top: 60px; }
 
-.username input, .password input {
+input[name='username'], input[name='password'] {
   width: 60%;
   height: 29px;
   margin-left: 18%;
@@ -38,22 +42,12 @@ h4 {
   box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.6);
   background: rgba(255, 255, 255, 0); }
 
-.password {
+input[name='password'] {
   margin-bottom: 20px; }
 
-.add-new, .submit {
+button[name='submit'], button[name='addNew'] {
+  display: inline-block;
   width: 30%;
-  margin-top: 10px;
-  display: inline-block; }
-
-.submit {
-  margin-left: 89px; }
-
-.add-new {
-  margin-left: 15px; }
-
-.submit button, .add-new button {
-  width: 93%;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0);
   border-color: #529EEB;
@@ -61,43 +55,81 @@ h4 {
   font-weight: bold;
   font-family: monospace;
   font-size: 15px; }
-  .submit button:focus, .add-new button:focus {
+  button[name='submit']:focus, button[name='addNew']:focus {
     outline: none; }
 
+button[name='submit'] {
+  margin-left: 88px; }
+
+button[name='addNew'] {
+  margin-left: 10px; }
+
 .mainContent header {
-  width: 100%;
-  height: 200px; }
+  width: 960px;
+  margin: 0 auto;
+  height: 250px; }
   .mainContent header h1, .mainContent header h4 {
     margin: 0;
     padding: 0; }
 
-.mainContent button {
-  float: right;
-  width: 20%;
-  height: 50px;
-  margin-top: -130px;
-  margin-right: 10px;
+button[name='Add-new-entry'] {
+  display: inline-block;
+  width: 148px;
+  margin-top: 20px;
+  margin-right: 10%;
   border-radius: 20px;
+  border-color: #529EEB;
   background: rgba(255, 255, 255, 0);
-  box-shadow: 0px 0px 30px 20px rgba(143, 156, 193, 0.4);
   color: #C2CAD1;
   font-weight: bold;
   font-family: monospace;
-  font-size: 18px; }
-  .mainContent button:focus {
+  font-size: 15px; }
+  button[name='Add-new-entry']:focus {
+    outline: none; }
+
+button[name='logout'] {
+  display: inline-block;
+  width: 148px;
+  margin-top: 20px;
+  margin-right: 10%;
+  margin-left: 30%;
+  border-radius: 20px;
+  border-color: #529EEB;
+  background: rgba(255, 255, 255, 0);
+  color: #C2CAD1;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 15px; }
+  button[name='logout']:focus {
     outline: none; }
 
 .feed {
-  width: 80%;
+  width: 960px;
   margin: 0 auto;
   padding-bottom: 100px; }
   .feed .feedItem {
+    position: relative;
     height: 250px;
     margin-top: 100px;
     background-repeat: no-repeat;
     background-attachment: fixed;
     box-shadow: 0px 0px 30px 20px rgba(143, 156, 193, 0.4);
     padding: 2%; }
+
+.feedInfoContainer > div {
+  display: inline-block;
+  position: absolute;
+  right: 15px; }
+  .feedInfoContainer > div span {
+    display: inline-block; }
+  .feedInfoContainer > div .delete:hover {
+    cursor: pointer;
+    color: #529EEB; }
+  .feedInfoContainer > div .edit {
+    margin-right: 10px; }
+    .feedInfoContainer > div .edit:hover {
+      cursor: pointer;
+      color: #529EEB; }
 
 .feedUser, .feedTime, .feedLocation {
   font-family: monospace;
@@ -111,13 +143,13 @@ h4 {
   margin-left: 10px; }
 
 p {
-  width: 60%;
+  width: 80%;
   color: white;
   font-family: monospace;
   font-size: 17px;
   display: inline-block;
   vertical-align: top;
-  margin-top: 25px;
+  margin-top: 15px;
   margin-left: 10px; }
 
 .feedImg img {
@@ -127,27 +159,47 @@ p {
   display: inline-block; }
 
 .new-entry {
-  width: 100%;
-  margin-left: 15%; }
+  width: 100%; }
+
+.entry-fields {
+  width: 960px;
+  margin: 0 auto;
+  position: relative; }
 
 .entry-fields input {
-  width: 20%;
+  width: 49%;
   height: 30px;
-  margin-right: 10px;
-  margin-left: 20px;
   text-align: center;
   color: white;
   box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.6);
   background: rgba(255, 255, 255, 0);
   font-family: monospace;
   font-size: 18px; }
+  .entry-fields input:nth-of-type(2) {
+    margin-left: 1.5%; }
 
 textarea {
-  width: 66.5%;
+  width: 100%;
+  padding: 10px;
   margin-top: 30px;
-  margin-left: 20px;
   color: white;
   font-family: monospace;
   font-size: 18px;
   box-shadow: 0px 0px 10px 1px rgba(145, 145, 145, 0.6);
   background: rgba(255, 255, 255, 0); }
+
+button[name='submitNewSighting'] {
+  position: absolute;
+  right: 0px;
+  display: inline-block;
+  width: 148px;
+  margin-top: 20px;
+  border-radius: 20px;
+  border-color: #529EEB;
+  background: rgba(255, 255, 255, 0);
+  color: #C2CAD1;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 15px; }
+  button[name='submitNewSighting']:focus {
+    outline: none; }

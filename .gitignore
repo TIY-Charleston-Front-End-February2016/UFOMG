@@ -1,6 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
-
-
 .idea/workspace.xml
 *.db
 bower_components/
+.DS_Store

@@ -1,76 +1,109 @@
 
 .mainContent header {
-  width: 100%;
-  // position: fixed;
-  height: 200px;
-  // background-image: url("images/StarryNight2.jpg");
+  width: 960px;
+  margin: 0 auto;
+  height: 250px;
   h1, h4 {
     margin: 0;
     padding: 0;
   }
 }
 
-.mainContent button {
-  float: right;
-  width: 20%;
-  height: 50px;
-  margin-top: -130px;
-  margin-right: 10px;
+button[name='Add-new-entry'] {
+  display: inline-block;
+  width: 148px;
+  margin-top: 20px;
+  margin-right: 10%;
   border-radius: 20px;
+  border-color: #529EEB;
   background: rgba(255, 255, 255, 0);
-  box-shadow: 0px 0px 30px 20px rgba(143, 156, 193, 0.4);
   color:#C2CAD1;
   font-weight: bold;
-  font-family:monospace;
-  font-size: 18px;
+  font-family: monospace;
+  font-size: 15px;
   &:focus{
     outline: none;
   }
-
 }
+
+button[name='logout'] {
+  display: inline-block;
+  width: 148px;
+  margin-top: 20px;
+  margin-right: 10%;
+  margin-left: 30%;
+  border-radius: 20px;
+  border-color: #529EEB;
+  background: rgba(255, 255, 255, 0);
+  color:#C2CAD1;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 15px;
+  &:focus{
+    outline: none;
+  }
+}
+
 .feed {
-  width: 80%;
+  width: 960px;
   margin: 0 auto;
   padding-bottom: 100px;
-  // padding-top: 200px;
   .feedItem {
+    position: relative;
     height: 250px;
     margin-top: 100px;
     background-repeat: no-repeat;
     background-attachment: fixed;
     box-shadow: 0px 0px 30px 20px rgba(143, 156, 193, 0.4);
     padding: 2%;
-    // background-image: url('images/StarryNight2.jpg');
+  }
+}
+
+.feedInfoContainer > div {
+  display: inline-block;
+  position: absolute;
+  right: 15px;
+  span {
+    display: inline-block;
+  }
+  .delete {
+    &:hover {
+      cursor: pointer;
+      color: #529EEB;
+    }
+  }
+  .edit {
+    margin-right: 10px;
+    &:hover {
+      cursor: pointer;
+      color: #529EEB;
+    }
   }
 }
 
 .feedUser, .feedTime, .feedLocation {
-font-family: monospace;
-color: white;
-
-
+  font-family: monospace;
+  color: white;
 }
 
 
 .feedUser {
-
-font-size: 23px;
-
+  font-size: 23px;
 }
 
 .feedTime {
-font-size: 18px;
+  font-size: 18px;
   margin-left: 10px;
 }
 
 p {
-  width: 60%;
+  width: 80%;
   color: white;
   font-family: monospace;
   font-size: 17px;
   display: inline-block;
   vertical-align: top;
-  margin-top: 25px;
+  margin-top: 15px;
   margin-left: 10px;
 }
  .feedImg img {

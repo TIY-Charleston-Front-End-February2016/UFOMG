@@ -1,8 +1,8 @@
 
 * {
   margin:0;
-  
-
+  box-sizing: border-box;
+  color: white;
 }
 
 body {
@@ -10,4 +10,8 @@ body {
   background-image: url("images/StarryNight2.jpg");
   background-repeat: repeat;
   background-attachment: fixed;
+}
+
+.hidden {
+  display: none;
 }
